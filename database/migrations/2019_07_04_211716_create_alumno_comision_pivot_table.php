@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateComisionesHasAlumnosTable extends Migration
+class CreateAlumnoComisionPivotTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,16 +14,15 @@ class CreateComisionesHasAlumnosTable extends Migration
     {
         Schema::create('alumno_comision', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('comision_id')->unsigned();
-            $table->bigInteger('alumno_id')->unsigned();
+
             $table->float('nota')->nullable();
             $table->boolean('condicion')->nullable();
 
-            $table->foreign('comision_id')->references('id')->on('comisiones');
+            $table->bigInteger('alumno_id')->unsigned();
+            $table->bigInteger('comision_id')->unsigned();
 
-            $table->foreign('alumno_id')->references('id')->on('alumnos');
-
-            $table->timestamps();
+            $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
+            $table->foreign('comision_id')->references('id')->on('comisiones')->onDelete('cascade');
         });
     }
 
@@ -35,6 +33,6 @@ class CreateComisionesHasAlumnosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comisiones_has_alumnos');
+        Schema::drop('alumno_comision');
     }
 }

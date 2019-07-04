@@ -22,3 +22,9 @@ Route::group(['prefix' => 'comision'], function() {
     Route::get('/{post}', 'ComisionController@show')->name('comision.show');
     Route::post('/', 'ComisionController@store')->name('comision.store');
 });
+
+Route::group(['prefix' => 'nota'], function() {
+    Route::get('/', 'NotaController@index')->name('nota');
+    Route::get('/{post}', 'NotaController@show')->name('nota.show');
+    Route::post('/', 'NotaController@store')->name('nota.store');
+});

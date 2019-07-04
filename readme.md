@@ -67,3 +67,4 @@ php artisan make:model Comision -c
 
 Instalé composer require laracasts/generators --dev
 para generar la pivot table
+art make:migration:pivot alumno comision
