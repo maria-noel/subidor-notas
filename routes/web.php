@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'comisiones'], function() {
+    Route::get('/', 'ComisionController@index')->name('comisiones');
+    Route::get('/{post}', 'ComisionController@show')->name('comision.show');
+});

@@ -6,9 +6,12 @@ use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Comision;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ComisionTest extends TestCase
 {
+    use DatabaseTransactions;
+
     /**
      * A basic unit test example.
      *
@@ -35,23 +38,17 @@ class ComisionTest extends TestCase
     }
 
     public function test_can_show_one_comision() {
-        $comision = factory(Comision::class)->create();
+        $comision = factory(Comision::class)->create([
+            'turno' => $this->faker->randomElement(['M', 'T', 'N']),
+            'semestre' => 2,
+            'anio' => 3,
+            'facultad_id' => 5,
+            'carrera_id' => 3,
+            'materia_id' => 5,
+            'catedra_id' => 9
+        ]);
+
         $this->get(route('comision.show', $comision->id))
             ->assertStatus(200);
     }
-
-/*
-    public function test_can_list_comisiones() {
-        $comision = factory(Comision::class, 2)->create()->map(function ($comision) {
-            return $comision->only(['id', 'turno', 'semestre']);
-        });
-        
-        $this->get(route('comision'))
-            ->assertStatus(200)
-            ->assertJson($comision->toArray())
-            ->assertJsonStructure([
-                '*' => [ 'id', 'turno', 'semestre' ],
-            ]);
-    }
-    */
 }

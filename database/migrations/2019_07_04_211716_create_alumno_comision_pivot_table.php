@@ -23,6 +23,9 @@ class CreateAlumnoComisionPivotTable extends Migration
 
             $table->foreign('alumno_id')->references('id')->on('alumnos')->onDelete('cascade');
             $table->foreign('comision_id')->references('id')->on('comisiones')->onDelete('cascade');
+
+            $table->timestamps();
+
         });
     }
 

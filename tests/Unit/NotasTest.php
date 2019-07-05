@@ -1,26 +1,21 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class AlumnoComisionTest extends TestCase
+class NotasTest extends TestCase
 {
-    use DatabaseTransactions;
-
     /**
-     * A basic feature test example.
+     * A basic unit test example.
      *
      * @return void
      */
     public function testExample()
     {
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        $this->assertTrue(true);
     }
 
     public function test_can_create_nota() {
@@ -53,4 +48,7 @@ class AlumnoComisionTest extends TestCase
             ;
     }
 
+    public function test_can_list_notas() {
+        $this->markTestIncomplete('@todo');
+    }
 }

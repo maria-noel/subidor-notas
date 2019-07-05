@@ -14,7 +14,9 @@ class ComisionController extends Controller
      */
     public function index()
     {
-        return Comision::all();
+        $comisiones = Comision::all();
+
+        return view('comisiones.index', compact('comisiones'));
     }
 
     /**

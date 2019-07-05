@@ -24,4 +24,15 @@ class Comision extends Model
     {
         return $this->belongsToMany('App\Alumnos');
     }
+    
+
+    public function materias()
+    {
+        return $this->hasMany(Materia::class, 'id', 'materia_id', 'materia')    ;
+    }
+
+    public function facultad()
+    {
+        return $this->hasOne('App\Facultad');
+    }
 }
