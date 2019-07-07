@@ -12,10 +12,16 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
-Route::group(['prefix' => 'comisiones'], function() {
-    Route::get('/', 'ComisionController@index')->name('comisiones');
-    Route::get('/{post}', 'ComisionController@show')->name('comision.show');
+Route::group(['prefix' => 'comisiones'], function () {
+	Route::get('/', 'ComisionController@index')->name('comisiones');
+	Route::get('/{post}', 'ComisionController@show')->name('comision.show');
+});
+
+Route::group(['prefix' => 'notas'], function () {
+	Route::get('/', 'NotaController@index')->name('notas');
+	Route::get('/{post}', 'NotaController@show')->name('notas.show');
+	Route::get('/create', 'NotaController@create')->name('notas.create');
 });

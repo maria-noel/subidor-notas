@@ -19,13 +19,6 @@ class Comision extends Model
     ];
 
 
-    // relacion entre comision y alumnos
-    public function alumnos()
-    {
-        return $this->belongsToMany('App\Alumnos');
-    }
-    
-
     public function materias()
     {
         return $this->hasMany(Materia::class, 'id', 'materia_id', 'materia')    ;
@@ -33,6 +26,19 @@ class Comision extends Model
 
     public function facultad()
     {
-        return $this->hasOne('App\Facultad');
+        return $this->hasOne('App\Facultad', 'id', 'facultad_id', 'facultad');
     }
+
+    public function carrera()
+    {
+        return $this->hasOne(Carrera::class, 'id', 'carrera_id')    ;
+
+    }
+
+    public function catedra()
+    {
+        return $this->hasOne('App\Catedra', 'id', 'catedra_id');
+    }
+
+
 }

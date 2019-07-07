@@ -1,17 +1,65 @@
-        @extends('layouts.layout')
+@extends('layouts.layout')
 
-        @section('title', 'Page Title')
+@section('title', 'Comisiones')
 
-        @section('sidebar')
-        @parent
+@section('content')
+<div class="card-header card-header-primary">
+    <h4 class="card-title ">Listado de Comisiones</h4>
+    <p class="card-category"> Se listan todas las comisiones existentes</p>
+</div>
+<div class="card-body">
+    <div class="table-responsive">
+        <table class="table">
 
-        <p>This is appended to the master sidebar.</p>
-        @stop
+            <thead class="text-primary">
+                <tr>
+                    <td>Id comisión</td>
+                    <td>Turno</td>
+                    <td>Semestre</td>
+                    <td>Año</td>
+                    <td>Facultad</td>
+                    <td>Carrera</td>
+                    <td>Materia</td>
+                    <td>Catedra</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($comisiones as $comision)
+                <tr>
+                    <td>
+                        {{ $comision->id}}
+                    </td>
+                    <td>
+                        {{ $comision->turno}}
+                    </td>
+                    <td>
+                        {{ $comision->semestre}}
+                    </td>
+                    <td>
+                        {{ $comision->anio}}
+                    </td>
+                    <td>
 
-        @section('content')
-        @foreach($comisiones as $comision)
+                        {{ $comision->facultad->nombre }}
+                    </td>
+                    <td>
 
-        {{ dd($comision->materias[0]->nombre) }}
-        @endforeach
-        <p>This is my body content.</p>
-        @stop
+                        {{ $comision->carrera->nombre}}
+                    </td>
+                    <td>
+
+                        {{ $comision->materias[0]->nombre }}
+                    </td>
+                    <td>
+
+                        {{ $comision->catedra->nombre}}
+                    </td>
+                </tr>
+
+
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div> 
+@stop

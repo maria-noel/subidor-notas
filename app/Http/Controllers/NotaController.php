@@ -7,7 +7,7 @@ use App\Nota;
 use App\Alumno;
 use App\Comision;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-
+use Illuminate\Support\Facades\DB;
 
 class NotaController extends Controller
 {
@@ -18,7 +18,9 @@ class NotaController extends Controller
      */
     public function index()
     {
-        return Nota::all();
+        $notas = Nota::all();
+
+        return view('notas.index', compact('notas'));
     }
 
     /**
@@ -66,10 +68,16 @@ class NotaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Nota $nota)
+    public function show($id)
     {
-        // dd($comision);
-        return $nota;
+        $notasPorComision = DB::table('alumno_comision')
+        ->join('alumnos', 'alumnos.id', '=', 'alumno_comision.alumno_id')
+        ->join('comisiones', 'comisiones.id', '=', 'alumno_comision.comision_id')
+        ->select('alumno_comision.*', 'alumnos.*', 'comisiones.*')
+        ->where('alumno_comision.comision_id', '=', $id)
+        ->get();
+
+        return view('notas.show', compact('notasPorComision'));
         
     }
 

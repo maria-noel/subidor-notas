@@ -47,11 +47,10 @@ class ComisionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Comision $comision)
+    public function show($id)
     {
-        // dd($comision);
-        return $comision;
-        
+        $comision = Comision::findOrFail($id);
+        return view('comisiones.show', compact('comision', $comision));
     }
 
     
