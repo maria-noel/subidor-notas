@@ -17,7 +17,7 @@
                     <td>Comision</td>
                     <td>Alumno</td>
                     <td>Nota</td>
-                    <td>Condición</td>
+                    <td>Condición </td>
                 </tr>
             </thead>
             <tbody>
@@ -25,18 +25,17 @@
 
                 <tr>
                     <td>
-                        {{ $nota->comision->id }}
+                        <a href="/comisiones/{{ $nota->comision->id }}"> {{ $nota->comision->id }}</a>
                     </td>
                     <td>
                         {{ $nota->alumno->nombre }}
                     </td>
                     <td>
-                        {{ $nota->nota }} -
+                        {{ $nota->nota }} 
 
                     </td>
                     <td>
-                        {{ $nota->condicion }}
-
+                        {{ $nota->condicion === 0 ? 'Regular' : 'Libre' }}
                     </td>
                 </tr>
                 @endforeach

@@ -84,12 +84,16 @@ class NotaController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
+     * El alumno necesita estar inscripto en una comisión para tener nota, por defecto viene en null
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        echo "hello";
+        // $alumnoComision = Nota::all();
+        $alumnosHabilitados = DB::table('alumno_comision')
+        ->where('condicion', '=', 1)
+        ->get();
+        return view('notas.create', compact('alumnosHabilitados'));
     }
 
 

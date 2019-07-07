@@ -4,8 +4,18 @@
 @section('content')
 
 <div class="card-header card-header-primary">
-    <h4 class="card-title ">Listado de Calificaciones </h4>
-    <p class="card-category"> Según la comisión</p>
+    <div class="row">
+        <div class="col-md-10">
+            <h4 class="card-title ">Listado de Calificaciones </h4>
+            <p class="card-category"> Filtrado por comisión</p>
+        </div>
+        <div class="col-md-2">
+            <div class="card-header card-header-danger">
+                <a href="/notas/create"><h4 class="card-title">Nueva nota</h4></a>
+            </div>
+        </div>
+    </div>
+
 </div>
 <div class="card-body">
     <div class="table-responsive">

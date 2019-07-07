@@ -1,32 +1,62 @@
+@extends('layouts.layout')
+
+@section('title', 'Cargar nota')
+
+@section('content')
+
+<div class="card-header card-header-primary">
+  <h4 class="card-title ">Carga de notas</h4>
+  <p class="card-category"> Alumnos</p>
+</div>
+<div class="card-body">
+  {{ Form::open(array('url' => 'api/notas/store', 'method' => 'put')) }}
+  @foreach($alumnosHabilitados as $habilitados)
+
+  <div class="row">
+    <!-- <div class="col-md-5">
+      <div class="form-group bmd-form-group">
+        <label class="bmd-label-floating">Company (disabled)</label>
+        <input type="text" class="form-control" disabled="">
+      </div>
+    </div> -->
+    <div class="col-md-3">
+      <div class="form-group bmd-form-group">
+        <label class="bmd-label-floating">Comisión</label>
+        <select class="form-control selectpicker" data-style="btn btn-link" id="">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group bmd-form-group">
+        <label class="bmd-label-floating">Email address</label>
+        <input type="email" class="form-control">
+      </div>
+    </div>
+  </div>
 
 
-<form>
-  <div class="form-group">
-    <label for="exampleFormControlInput1">Email address</label>
-    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group bmd-form-group">
+        <label class="bmd-label-floating">Fist Name</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group bmd-form-group">
+        <label class="bmd-label-floating">Last Name</label>
+        <input type="text" class="form-control">
+      </div>
+    </div>
   </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Example select</label>
-    <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlSelect2">Example multiple select</label>
-    <select multiple class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </div>
-  <div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-  </div>
-</form>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+  @endforeach
+  {!! Form::close() !!}
+</div>
+
+@stop

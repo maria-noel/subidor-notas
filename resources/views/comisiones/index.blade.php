@@ -5,7 +5,7 @@
 @section('content')
 <div class="card-header card-header-primary">
     <h4 class="card-title ">Listado de Comisiones</h4>
-    <p class="card-category"> Se listan todas las comisiones existentes</p>
+    <p class="card-category"> Se listan todas las comisiones existentes; para <strong>agregar </strong> una nota elegir el id de comisión</p>
 </div>
 <div class="card-body">
     <div class="table-responsive">
@@ -27,7 +27,7 @@
                 @foreach($comisiones as $comision)
                 <tr>
                     <td>
-                        {{ $comision->id}}
+                    <a href="notas/{{ $comision->id }}"> {{ $comision->id}}</a>
                     </td>
                     <td>
                         {{ $comision->turno}}
