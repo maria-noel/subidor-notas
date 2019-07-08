@@ -11,7 +11,7 @@
         </div>
         <div class="col-md-2">
             <div class="card-header card-header-danger">
-                <a href="/notas/create"><h4 class="card-title">Nueva nota</h4></a>
+                <a href="/notas/create/{{$notasPorComision[0]->comision_id}}"><h4 class="card-title">Nueva nota</h4></a>
             </div>
         </div>
     </div>
@@ -20,7 +20,6 @@
 <div class="card-body">
     <div class="table-responsive">
         <table class="table">
-
             <thead class="text-primary">
                 <tr>
                     <td>Id comisión</td>
@@ -39,7 +38,7 @@
                         {{ $nota->nombre}}
                     </td>
                     <td>
-                        {{ $nota->condicion}}
+                        {{ $nota->condicion === 1 ? 'Regular' : 'Libre'}}
                     </td>
                     <td>
                         {{ $nota->nota}}

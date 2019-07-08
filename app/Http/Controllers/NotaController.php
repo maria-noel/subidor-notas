@@ -8,6 +8,7 @@ use App\Alumno;
 use App\Comision;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
+use App\Materia;
 
 class NotaController extends Controller
 {
@@ -32,24 +33,22 @@ class NotaController extends Controller
     public function store(Request $request)
     {
         try {
-            
-        // existe el alumno en la tabla alumnos?
-        $alumno = Alumno::findOrFail($request->alumno_id);
+            // existe el alumno en la tabla alumnos?
+            $alumno = Alumno::findOrFail($request->alumno_id);
 
-        // existe la comision en la tabla comision? 
-        $comision = Comision::findOrFail($request->comision_id);
+            // existe la comision en la tabla comision? 
+            $comision = Comision::findOrFail($request->comision_id);
 
-        $validatedData = [];
+            $validatedData = [];
 
-        $validatedData = $request->validate([
-            'nota' => 'required|between:1,10'
-        ]);
+            $validatedData = $request->validate([
+                'nota' => 'required|between:1,10'
+            ]);
 
-        $nota = Nota::create($request->all());
+            $nota = Nota::create($request->all());
 
-        return response()->json($nota, 201);
-
-        } catch(ModelNotFoundException $e) {
+            return response()->json($nota, 201);
+        } catch (ModelNotFoundException $e) {
             // dd(get_class_methods($e)); // lists all available methods for exception object
             $error = [
                 'code' => $e->getCode(),
@@ -60,7 +59,7 @@ class NotaController extends Controller
     }
 
 
-        
+
 
     /**
      * Display the specified resource.
@@ -71,14 +70,15 @@ class NotaController extends Controller
     public function show($id)
     {
         $notasPorComision = DB::table('alumno_comision')
-        ->join('alumnos', 'alumnos.id', '=', 'alumno_comision.alumno_id')
-        ->join('comisiones', 'comisiones.id', '=', 'alumno_comision.comision_id')
-        ->select('alumno_comision.*', 'alumnos.*', 'comisiones.*')
-        ->where('alumno_comision.comision_id', '=', $id)
-        ->get();
+            ->join('alumnos', 'alumnos.id', '=', 'alumno_comision.alumno_id')
+            ->join('comisiones', 'comisiones.id', '=', 'alumno_comision.comision_id')
+            ->join('materias', 'comisiones.materia_id', '=', 'comisiones.materia_id')
+            ->select('alumno_comision.*', 'alumnos.*', 'comisiones.*', 'materias.*')
+            ->where('alumno_comision.comision_id', '=', $id)
+            // ->toSql();
+            ->get();
 
-        return view('notas.show', compact('notasPorComision'));
-        
+        return view('notas.show', compact('notasPorComision', 'materiaPorNota'));
     }
 
 
@@ -87,15 +87,21 @@ class NotaController extends Controller
      * El alumno necesita estar inscripto en una comisión para tener nota, por defecto viene en null
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        // $alumnoComision = Nota::all();
+        // $alumnosHabilitados = Nota
+        // ->where('condicion','=', 1)
+        // ->get();
+
         $alumnosHabilitados = DB::table('alumno_comision')
-        ->where('condicion', '=', 1)
-        ->get();
+            ->join('alumnos', 'alumnos.id', '=', 'alumno_comision.alumno_id')
+
+            ->select('*')
+
+            ->distinct('alumno_id')
+            ->where('condicion', '=', 1)
+            ->get();
+
         return view('notas.create', compact('alumnosHabilitados'));
     }
-
-
-    
 }

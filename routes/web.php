@@ -22,7 +22,7 @@ Route::group(['prefix' => 'comisiones'], function () {
 
 Route::group(['prefix' => 'notas'], function () {
 	Route::get('/', 'NotaController@index')->name('notas');
-	Route::get('/create', 'NotaController@create')->name('notas.create');
+	Route::get('/create/{id}', 'NotaController@create')->name('notas.create');
 
 	Route::get('/{post}', 'NotaController@show')->name('notas.show');
 });
