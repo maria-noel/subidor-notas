@@ -16,7 +16,7 @@
     <div class="row">
       <div class="form-group ">
         <label class="bmd-label-floating">Id Comisión</label>
-        <input name="comision_id" type="text" class="form-control disabled"  readonly value="{{$alumnosHabilitados[0]->comision_id}}" >
+        <input name="comision_id" type="text" class="form-control disabled"  readonly value="{{ $comision_seleccionada }}" >
       </div>
     </div>
 

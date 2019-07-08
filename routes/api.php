@@ -24,7 +24,8 @@ Route::group(['prefix' => 'comision'], function() {
 });
 
 Route::group(['prefix' => 'nota'], function() {
-    Route::get('/', 'NotaController@index')->name('nota');
-    Route::get('/{post}', 'NotaController@show')->name('nota.show');
-    Route::post('/', 'NotaController@store')->name('nota.store');
+    Route::get('/', 'ApiNotaController@index')->name('nota');
+    Route::get('/{post}', 'ApiNotaController@show')->name('nota.show');
+    Route::post('/', 'ApiNotaController@store')->name('nota.store');
+
 });
