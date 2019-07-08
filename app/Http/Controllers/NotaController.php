@@ -84,14 +84,11 @@ class NotaController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * El alumno necesita estar inscripto en una comisión para tener nota, por defecto viene en null
+     * El alumno necesita estar inscripto en una comisión para tener nota
      * @return \Illuminate\Http\Response
      */
     public function create($id)
     {
-        // $alumnosHabilitados = Nota
-        // ->where('condicion','=', 1)
-        // ->get();
 
         $alumnosHabilitados = DB::table('alumno_comision')
             ->join('alumnos', 'alumnos.id', '=', 'alumno_comision.alumno_id')

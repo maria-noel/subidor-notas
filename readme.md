@@ -1,3 +1,21 @@
+# Descripción del proyecto
+
+Es un ejercicio técnico propuesto en una entrevista.
+
+Consta de realizar un sistema para cargar y listar notas de una universidad, los datos serán consumidos mediante una api REST.
+Se tendrán dos pantallas, una con las notas cargadas por comisión y otra para realizar la carga. 
+
+Los diagramas de clases, así como el DER y el create de la base de datos están en la carpeta __extras__ 
+
+Para este proyecto utilicé
+_ Laradock para el entorno
+_ Visual Studio Code 
+_ Mysql Workbench
+_ Material Design
+_ Postman 
+_ Laravel 5.8
+
+
 # Guía para correr el proyecto
 
 El servicio corre en una imagen de docker, en laradock
@@ -68,3 +86,4 @@ php artisan make:model Comision -c
 Instalé composer require laracasts/generators --dev
 para generar la pivot table
 art make:migration:pivot alumno comision
+
