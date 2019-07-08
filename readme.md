@@ -8,12 +8,13 @@ Se tendrán dos pantallas, una con las notas cargadas por comisión y otra para 
 Los diagramas de clases, así como el DER y el create de la base de datos están en la carpeta __extras__ 
 
 Para este proyecto utilicé
-_ Laradock para el entorno
-_ Visual Studio Code 
-_ Mysql Workbench
-_ Material Design
-_ Postman 
-_ Laravel 5.8
+* Laradock para el entorno
+* Visual Studio Code 
+* Mysql Workbench
+* Material Design
+* Postman 
+* Laravel 5.8
+* Draw.io (diagrama de clases)
 
 
 # Guía para correr el proyecto
